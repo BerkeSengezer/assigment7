@@ -1,4 +1,4 @@
-const demoEmail = import.meta.env.VITE_DEMO_EMAIL || 'student@example.com'
+const demoEmail = import.meta.env.VITE_DEMO_EMAIL || '230408005@st.biruni.edu.tr'
 
 export function login(username, password) {
   return new Promise((resolve, reject) => {

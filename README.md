@@ -6,7 +6,7 @@ A React storefront with products from DummyJSON, search and category filters, a 
 
 1. Run `npm ci`.
 2. Run `npm run dev` and open the address Vite prints.
-3. Sign in with `student@example.com` and `demo123456`. To use your student email, set `VITE_DEMO_EMAIL` in `.env.local` and restart Vite.
+3. Sign in with `230408005@st.biruni.edu.tr` and `demo123456`. To use your student email, set `VITE_DEMO_EMAIL` in `.env.local` and restart Vite.
 
 Run `npm run build` to check the production build.
 
