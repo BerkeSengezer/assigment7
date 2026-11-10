@@ -1,19 +1,33 @@
 import { BrowserRouter, Link, NavLink, Outlet, Route, Routes } from 'react-router'
-import './App.css'
-import ProductList from './pages/ProductList'
-import ProductDetail from './pages/ProductDetail'
+import ProtectedRoute from './components/ProtectedRoute'
+import { AuthProvider, useAuth } from './context/AuthContext'
 import Cart from './pages/Cart'
+import Login from './pages/Login'
+import ProductDetail from './pages/ProductDetail'
+import ProductList from './pages/ProductList'
 import { useCart } from './store/cartStore'
+import './App.css'
 
 function Layout() {
-  const count = useCart(state => state.items.reduce((sum, item) => sum + item.quantity, 0))
+  const { user, dispatch } = useAuth()
+  const count = useCart(state =>
+    state.items.reduce((sum, item) => sum + item.quantity, 0)
+  )
+
   return (
     <>
       <nav aria-label="Main navigation">
         <NavLink to="/" end>Home</NavLink>
         <NavLink to="/products">Products</NavLink>
         <NavLink to="/cart">Cart ({count})</NavLink>
-        <NavLink to="/login">Login</NavLink>
+        {user ? (
+          <>
+            <span>{user.username}</span>
+            <button type="button" onClick={() => dispatch({ type: 'LOGGED_OUT' })}>
+              Logout
+            </button>
+          </>
+        ) : <NavLink to="/login">Login</NavLink>}
       </nav>
       <main><Outlet /></main>
       <footer>Assignment 7</footer>
@@ -33,18 +47,20 @@ function NotFound() {
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route index element={<h1>Shop</h1>} />
-          <Route path="products">
-            <Route index element={<ProductList />} />
-            <Route path=":id" element={<ProductDetail />} />
+      <AuthProvider>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route index element={<h1>Shop</h1>} />
+            <Route path="products">
+              <Route index element={<ProductList />} />
+              <Route path=":id" element={<ProductDetail />} />
+            </Route>
+            <Route path="cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+            <Route path="login" element={<Login />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="cart" element={<Cart />} />
-          <Route path="login" element={<h1>Login</h1>} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   )
 }
