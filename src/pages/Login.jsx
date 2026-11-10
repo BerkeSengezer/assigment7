@@ -1,3 +1,4 @@
+import './Login.css'
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import { login } from '../api/authApi'
@@ -29,8 +30,8 @@ export default function Login() {
   }
 
   return (
-    <>
-      <h1>Login</h1>
+    <section className="login-panel" aria-labelledby="login-heading">
+      <h1 id="login-heading">Login</h1>
       <form onSubmit={handleSubmit}>
         <p>
           <label>
@@ -51,6 +52,6 @@ export default function Login() {
         </button>
         {error && <p role="alert">{error}</p>}
       </form>
-    </>
+    </section>
   )
 }
