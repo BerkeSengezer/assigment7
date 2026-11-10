@@ -63,7 +63,7 @@ export default function App() {
       <AuthProvider>
         <Routes>
           <Route element={<Layout />}>
-            <Route index element={<h1>Shop</h1>} />
+            <Route index element={<h1>Turkish Bazzaar</h1>} />
             <Route path="products">
               <Route index element={<ProductList />} />
               <Route path=":id" element={<ProductDetail />} />
