@@ -2,14 +2,17 @@ import { BrowserRouter, Link, NavLink, Outlet, Route, Routes } from 'react-route
 import './App.css'
 import ProductList from './pages/ProductList'
 import ProductDetail from './pages/ProductDetail'
+import Cart from './pages/Cart'
+import { useCart } from './store/cartStore'
 
 function Layout() {
+  const count = useCart(state => state.items.reduce((sum, item) => sum + item.quantity, 0))
   return (
     <>
       <nav aria-label="Main navigation">
         <NavLink to="/" end>Home</NavLink>
         <NavLink to="/products">Products</NavLink>
-        <NavLink to="/cart">Cart</NavLink>
+        <NavLink to="/cart">Cart ({count})</NavLink>
         <NavLink to="/login">Login</NavLink>
       </nav>
       <main><Outlet /></main>
@@ -37,7 +40,7 @@ export default function App() {
             <Route index element={<ProductList />} />
             <Route path=":id" element={<ProductDetail />} />
           </Route>
-          <Route path="cart" element={<h1>Cart</h1>} />
+          <Route path="cart" element={<Cart />} />
           <Route path="login" element={<h1>Login</h1>} />
           <Route path="*" element={<NotFound />} />
         </Route>

@@ -2,8 +2,10 @@ import { useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { fetchProduct } from '../api/productsApi'
 import { useFetch } from '../hooks/useFetch'
+import { useCart } from '../store/cartStore'
 
 function ProductDetails({ id }) {
+  const addItem = useCart(state => state.addItem)
   const navigate = useNavigate()
   const inputs = useMemo(() => [id], [id])
   const { loading, error, data: product } = useFetch(fetchProduct, inputs)
@@ -20,6 +22,7 @@ function ProductDetails({ id }) {
           <p>{product.description}</p>
           <p>Category: {product.category}</p>
           <p>Price: ${product.price.toFixed(2)}</p>
+          <button type="button" onClick={() => addItem(product)}>Add to cart</button>
         </article>
       )}
     </>
