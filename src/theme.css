@@ -17,3 +17,8 @@
 :root[data-theme="dark"] a {
   color: #a9c2ff;
 }
+
+/* Theme heading colors */
+:root[data-theme] main :is(h1, h2, h3) {
+  color: inherit;
+}
