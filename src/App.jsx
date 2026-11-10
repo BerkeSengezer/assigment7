@@ -1,5 +1,6 @@
+import NotFound from './pages/NotFound'
 import Layout from './Layout'
-import { BrowserRouter, Link, Route, Routes } from 'react-router'
+import { BrowserRouter, Route, Routes } from 'react-router'
 import ProtectedRoute from './components/ProtectedRoute'
 import { AuthProvider } from './context/AuthContext'
 import Cart from './pages/Cart'
@@ -8,15 +9,6 @@ import ProductDetail from './pages/ProductDetail'
 import ProductList from './pages/ProductList'
 import './App.css'
 import './theme.css'
-
-function NotFound() {
-  return (
-    <>
-      <h1>Page not found</h1>
-      <Link to="/">Back to home</Link>
-    </>
-  )
-}
 
 export default function App() {
   return (
