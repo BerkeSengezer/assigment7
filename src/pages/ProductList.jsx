@@ -46,6 +46,16 @@ export default function ProductList() {
           {categories.map(name => <option key={name} value={name}>{name}</option>)}
         </select>
       </label>
+      {(params.has('q') || params.has('category')) && (
+        <button type="button" onClick={() => {
+          const next = new URLSearchParams(params)
+          next.delete('q')
+          next.delete('category')
+          setParams(next, { replace: true })
+        }}>
+          Clear filters
+        </button>
+      )}
       {products.length === 0 ? (
         <p>No matching products.</p>
       ) : (
