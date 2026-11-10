@@ -6,9 +6,19 @@ import Login from './pages/Login'
 import ProductDetail from './pages/ProductDetail'
 import ProductList from './pages/ProductList'
 import { useCart } from './store/cartStore'
+import { useEffect } from 'react'
+import { useLocalStorage } from './hooks/useLocalStorage'
 import './App.css'
+import './theme.css'
 
 function Layout() {
+  const [theme, setTheme] = useLocalStorage('assignment7-theme', 'light')
+  const dark = theme === 'dark'
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+  }, [dark])
+
   const { user, dispatch } = useAuth()
   const count = useCart(state =>
     state.items.reduce((sum, item) => sum + item.quantity, 0)
@@ -28,6 +38,9 @@ function Layout() {
             </button>
           </>
         ) : <NavLink to="/login">Login</NavLink>}
+        <button type="button" onClick={() => setTheme(dark ? 'light' : 'dark')}>
+          {dark ? 'Light mode' : 'Dark mode'}
+        </button>
       </nav>
       <main><Outlet /></main>
       <footer>Assignment 7</footer>

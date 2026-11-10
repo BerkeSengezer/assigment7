@@ -1,0 +1,19 @@
+:root[data-theme="light"] {
+  color-scheme: light;
+  color: #172033;
+  background: #f8fafc;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  color: #f1f5f9;
+  background: #172033;
+}
+
+:root[data-theme="light"] a {
+  color: #2449a6;
+}
+
+:root[data-theme="dark"] a {
+  color: #a9c2ff;
+}
