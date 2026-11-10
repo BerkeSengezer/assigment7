@@ -1,5 +1,6 @@
 import { BrowserRouter, Link, NavLink, Outlet, Route, Routes } from 'react-router'
 import './App.css'
+import ProductList from './pages/ProductList'
 
 function Layout() {
   return (
@@ -32,7 +33,7 @@ export default function App() {
         <Route element={<Layout />}>
           <Route index element={<h1>Shop</h1>} />
           <Route path="products">
-            <Route index element={<h1>Products</h1>} />
+            <Route index element={<ProductList />} />
             <Route path=":id" element={<h1>Product details</h1>} />
           </Route>
           <Route path="cart" element={<h1>Cart</h1>} />
