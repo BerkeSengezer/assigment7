@@ -1,3 +1,4 @@
+import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import Layout from './Layout'
 import { BrowserRouter, Route, Routes } from 'react-router'
@@ -16,7 +17,7 @@ export default function App() {
       <AuthProvider>
         <Routes>
           <Route element={<Layout />}>
-            <Route index element={<h1>Turkish Bazzaar</h1>} />
+            <Route index element={<Home />} />
             <Route path="products">
               <Route index element={<ProductList />} />
               <Route path=":id" element={<ProductDetail />} />

@@ -41,3 +41,16 @@ footer {
   margin-bottom: 12px;
   object-fit: contain;
 }
+
+.shop-welcome {
+  margin: 32px auto;
+  padding: 24px;
+  text-align: center;
+}
+
+.browse-catalog {
+  display: inline-block;
+  padding: 10px 16px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+}
