@@ -49,7 +49,7 @@ export default function ProductList() {
       {products.length === 0 ? (
         <p>No matching products.</p>
       ) : (
-        <ul>{products.map(product => <ProductCard key={product.id} product={product} />)}</ul>
+        <ul className="product-grid">{products.map(product => <ProductCard key={product.id} product={product} />)}</ul>
       )}
     </>
   )
